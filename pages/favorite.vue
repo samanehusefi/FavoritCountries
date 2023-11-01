@@ -14,31 +14,29 @@
         </NuxtLink>
 
     </div>
-    <h1 class="w-full mb-4 flex text-center justify-items-center justify-center font-bold text-3xl text-red-500">
-        My Favorite Countries
-    </h1>
+    <div class="border-b-4 border-indigo-500">
+        <h1 class="w-full mb-4 flex text-center justify-items-center justify-center font-bold text-3xl text-red-500">
+            My Favorite Countries
+        </h1>
+    </div>
     <div class="container m-auto">
         <div class="w-full flex flex-wrap">
             <div v-for="(country, index) in store.selectedCountries" :key="index"
                 class="basis-1/4 flex justify-center items-center bg-gray-100">
-                <div class="w-full p-2">
-                    <div class="bg-white shadow-lg hover:shadow-xl rounded-lg ">
-                        <div class="h-64 rounded-t-lg p-4 bg-no-repeat bg-center bg-cover">
-                            <img :src="country.flags.svg" class="w-full h-[200px]" />
-
-                        </div>
-                        <div class="flex justify-between items-start px-2 pt-2">
-                            <div class="p-2 flex-grow">
-                                {{ countryInfo }}
-                                <h1 class="font-medium text-xl font-poppins">{{ country.name.common }}</h1>
-                                <p class="text-gray-500 font-nunito">{{ country.cca2 }}</p>
-                            </div>
-
-                        </div>
-
-                    </div>
+                <CardItem :country="country" />
+            </div>
+        </div>
+    </div>
+    <div class="border-t-4 border-indigo-500">
+        <h2 class="w-full mb-4 flex text-center justify-items-center justify-center font-bold text-3xl text-red-500">
+            borders
+        </h2>
+        <div class="container m-auto">
+            <div class="w-full flex flex-wrap">
+                <div v-for="(border, index) in borders" :key="index"
+                    class="basis-1/4 flex justify-center items-center bg-gray-100">
+                    <CardItem :country="border" />
                 </div>
-                <!-- {{ store.selectedCountries }} -->
             </div>
         </div>
     </div>
