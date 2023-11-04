@@ -15,7 +15,7 @@
             </div>
             <div class="flex justify-between items-start px-2 pt-2">
                 <div class="p-2 flex-grow">
-                   {{ isSelected }}
+                
                     <h1 class="font-medium text-xl font-poppins">{{country.name.common}}</h1>
                     <p class="text-gray-500 font-nunito">{{country.cca2}}</p>
                 </div>
@@ -30,7 +30,7 @@ const props = defineProps({
     country: Object,
 })
 import { usefavFlag } from '../stores/useFavCountries'
-const {addToFav,isInFav,removeFromFav} = usefavFlag()
+const {addToFav,isInFav,removeFromFav,fetchBorders} = usefavFlag()
 // const favorite=(item)=>{
 //     store.selectedCountries.push(item);
 // }
@@ -44,6 +44,7 @@ const onCardClick=()=>{
         removeFromFav(props.country)
     } else{
          addToFav(props.country)
+         fetchBorders(props.country)
     }
 }
 </script>
