@@ -34,4 +34,7 @@ export const usefavFlag = defineStore("countires", {
       }
     },
   },
+  computed:{
+    
+  }
 });
