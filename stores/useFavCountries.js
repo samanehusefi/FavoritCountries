@@ -5,7 +5,8 @@ export const usefavFlag = defineStore("countires", {
   state: () => {
     return {
       selectedCountries: [],
-      borders: [],
+      bordersCountry: [],
+      borderCodes: [],
     };
   },
   actions: {
@@ -15,26 +16,34 @@ export const usefavFlag = defineStore("countires", {
       });
     },
     removeFromFav(country) {
+      debugger;
       remove(this.selectedCountries, (selectedCountry) => {
         return selectedCountry.cca2 === country.cca2;
       });
+      remove(this.borderCodes, (borderCode) => {
+        debugger;
+        return borderCode === country.borders;
+      });
     },
     addToFav(country) {
+      debugger;
       if (!this.isInFav(country)) {
+        debugger;
         this.selectedCountries.push(country);
-      }
-    },
-    fetchBorders(country) {
-      if (!!country.borders) {
-        const borderCodes = country.borders.join(",");
-        const { data: response } = useFetch(
-          `https://restcountries.com/v3.1/alpha?codes=${borderCodes}`
-        );
-        this.borders = response;
+        this.borderCodes.push(country.borders);
       }
     },
   },
-  computed:{
-    
-  }
+  getters: {
+    fetchBorders(state) {
+      if (!!state.borderCodes) {
+        const borderCodes = state.borderCodes.flat().join(",");
+        const { data: response } = useFetch(
+          `https://restcountries.com/v3.1/alpha?codes=${borderCodes}`
+        );
+        this.bordersCountry = response;
+      }
+      return this.bordersCountry;
+    },
+  },
 });

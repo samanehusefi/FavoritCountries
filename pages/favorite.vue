@@ -33,7 +33,7 @@
         </h2>
         <div class="container m-auto">
             <div class="w-full flex flex-wrap">
-                <div v-for="(border, index) in store.borders" :key="index"
+                <div v-for="(border, index) in store.fetchBorders" :key="index"
                     class="basis-1/4 flex justify-center items-center bg-gray-100">
                     <CardItem :country="border" />
                 </div>
@@ -47,4 +47,3 @@ import { usefavFlag } from '../stores/useFavCountries'
 const store = usefavFlag()
 
 </script>
-
