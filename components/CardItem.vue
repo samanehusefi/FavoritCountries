@@ -15,8 +15,8 @@
             </div>
             <div class="flex justify-between items-start px-2 pt-2">
                 <div class="p-2 flex-grow">
-                    <h1 class="font-medium text-xl font-poppins">{{ country.name.common }}</h1>
-                    <p class="text-gray-500 font-nunito">{{ country.cca2 }}</p>
+                    <h1 class="font-medium text-xl font-poppins">{{ country.name.common }} </h1>
+                    <p class="text-gray-500 font-nunito">{{ country.cca3 }}</p>
                 </div>
 
             </div>
@@ -28,18 +28,18 @@
 const props = defineProps({
     country: Object,
 })
-import { usefavFlag } from '../stores/useFavCountries'
-const { addToFav, isInFav, removeFromFav } = usefavFlag()
+import { useCountiresStore } from '../stores/useFavCountries'
+const { addToFav, isInFav, removeFromFav, fetchBorders } = useCountiresStore()
 const isSelected = computed(() => {
     return isInFav(props.country)
 })
 
 const onCardClick = () => {
     if (isSelected.value) {
-        debugger;
         removeFromFav(props.country)
     } else {
         addToFav(props.country)
+        fetchBorders(props.country)
     }
 }
 </script>

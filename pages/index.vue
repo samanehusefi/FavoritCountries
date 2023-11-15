@@ -34,7 +34,7 @@ const getApicountries = async (query) => {
 getApicountries()
 
 
-import { usefavFlag } from '../stores/useFavCountries'
-const store = usefavFlag()
+import { useCountiresStore } from '../stores/useFavCountries'
+const store = useCountiresStore()
 </script>
 

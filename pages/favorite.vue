@@ -21,7 +21,7 @@
     </div>
     <div class="container m-auto">
         <div class="w-full flex flex-wrap">
-            <div v-for="(country, index) in store.selectedCountries" :key="index"
+            <div v-for="(country, index) in selectedCountries" :key="index"
                 class="basis-1/4 flex justify-center items-center bg-gray-100">
                 <CardItem :country="country" />
             </div>
@@ -33,7 +33,7 @@
         </h2>
         <div class="container m-auto">
             <div class="w-full flex flex-wrap">
-                <div v-for="(border, index) in store.fetchBorders" :key="index"
+                <div v-for="(border, index) in borderCounries" :key="index"
                     class="basis-1/4 flex justify-center items-center bg-gray-100">
                     <CardItem :country="border" />
                 </div>
@@ -43,7 +43,43 @@
 </template>
 
 <script setup>
-import { usefavFlag } from '../stores/useFavCountries'
-const store = usefavFlag()
+import { useCountiresStore } from '../stores/useFavCountries'
+import { difference, remove } from "lodash";
+console.log(useCountiresStore())
+const store = useCountiresStore();
+const selectedCountries = computed(() => {
+    return store.selectedCountries
+})
 
+const borders = computed(() => {
+    return store.borderCodes
+})
+
+let borderCounries = ref([])
+const updateBorderCountries = async (newVal, oldVal) => {
+    const old = oldVal || []
+    if (old.length > newVal.length) {//Something Removed
+        const diff = difference(old, newVal)
+        remove(borderCounries, (borderCountry) => {
+            return diff.some(caa3 => borderCountry.cca3 === caa3)
+        })
+    } else {
+        const diff = difference(newVal, old)
+        const oldState = [...borderCounries.value]
+        borderCounries.value.push(...diff.map((caa3) => ({
+            flags: {},
+            name: {},
+            caa3
+        })));
+        const url = `https://restcountries.com/v3.1/alpha?codes=${diff.join(',')}`
+        const response = await fetch(url);
+        const result = await response.json()
+        borderCounries.value = [
+            ...oldState,
+            ...result
+        ];
+    }
+
+}
+watch(borders, updateBorderCountries, { immediate: true })
 </script>

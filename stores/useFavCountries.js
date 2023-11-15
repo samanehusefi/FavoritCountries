@@ -1,49 +1,59 @@
 import { defineStore } from "pinia";
 import { remove } from "lodash";
 
-export const usefavFlag = defineStore("countires", {
+export const useCountiresStore = defineStore("countires", {
   state: () => {
     return {
       selectedCountries: [],
-      bordersCountry: [],
-      borderCodes: [],
+      // bordersCountry: [],
+      // borderCodes: [],
     };
   },
   actions: {
     isInFav(country) {
       return this.selectedCountries.some((selectedCountry) => {
-        return selectedCountry.cca2 === country.cca2;
+        return selectedCountry.cca3 === country.cca3;
       });
     },
     removeFromFav(country) {
-      debugger;
       remove(this.selectedCountries, (selectedCountry) => {
-        return selectedCountry.cca2 === country.cca2;
+        return selectedCountry.cca3 === country.cca3;
       });
-      remove(this.borderCodes, (borderCode) => {
-        debugger;
-        return borderCode === country.borders;
-      });
+      // remove(this.borderCodes, (borderCode) => {
+      //   debugger
+      //   return borderCode === country.borders;
+      // });
     },
     addToFav(country) {
-      debugger;
       if (!this.isInFav(country)) {
-        debugger;
+        console.log("country.borderCodes", country.borders);
         this.selectedCountries.push(country);
-        this.borderCodes.push(country.borders);
+        // this.borderCodes.push(country.borders);
       }
     },
-  },
-  getters: {
-    fetchBorders(state) {
-      if (!!state.borderCodes) {
-        const borderCodes = state.borderCodes.flat().join(",");
+    fetchBorders() {
+      if (!!this.borderCodes) {
+        const borderCodes = this.borderCodes.flat().join(",");
         const { data: response } = useFetch(
           `https://restcountries.com/v3.1/alpha?codes=${borderCodes}`
         );
         this.bordersCountry = response;
       }
-      return this.bordersCountry;
+    },
+  },
+  getters: {
+    borderCodes() {
+      const bordersSet = new Set(
+        this.selectedCountries
+          .map((country) => country.borders)
+          .flat()
+          .filter(
+            (code) =>
+              code &&
+              !this.selectedCountries.some((country) => country.cca3 === code)
+          )
+      );
+      return [...bordersSet];
     },
   },
 });
