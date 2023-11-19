@@ -2,10 +2,10 @@
     <div class="w-full p-2">
         <div class="bg-white shadow-lg hover:shadow-xl rounded-lg ">
             <div class="h-64 rounded-t-lg p-4 bg-no-repeat bg-center bg-cover">
-                <img :src="country.flags.svg" class="w-full h-[200px] border border-2 object-cover" />
+                <img :src="country.flags.svg" class="w-full h-[200px] rounded-lg border border-2 object-cover" />
                 <div class="text-right ">
-                    <button style="background: rgba(0,0,0,0.3)"
-                        :class="['w-[40px] hover:text-pink-600 p-2 rounded-full my-1 mx-5', !!isSelected ? 'text-pink-500' : 'text-gray-500']"
+                    <button
+                        :class="['w-[40px] bg-gray-300 hover:text-pink-600 p-2 rounded-full my-1 mx-5', !!isSelected ? 'text-pink-500' : 'text-gray-400']"
                         @click="onCardClick">
                         <svg class="w-6 h-6" viewBox="0 0 24 24">
                             <path fill="currentColor"
@@ -17,8 +17,8 @@
             <!-- class="text-pink-500 hover:text-pink-600 p-2 rounded-full" -->
             <div class="flex justify-between items-start px-2 pt-2">
                 <div class="p-2 flex-grow">
-                    <h1 class="font-medium text-xl font-poppins">{{ country.name.common }} </h1>
-                    <p class="text-gray-500 font-nunito">{{ country.cca3 }}</p>
+                    <h2 class="font-serif font-medium text-xl font-poppins">{{ country.name.common }} </h2>
+                    <p class="font-serif text-gray-500 font-nunito">{{ country.cca3 }}</p>
                 </div>
 
             </div>

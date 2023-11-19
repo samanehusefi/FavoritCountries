@@ -1,6 +1,7 @@
 <template>
     <div class="border-b-4 border-indigo-500 mt-[50px]">
-        <h1 class="w-full mb-4 flex text-center justify-items-center justify-center font-bold text-3xl text-red-500">
+        <h1
+            class="font-serif w-full mb-4 flex text-center justify-items-center justify-center font-bold text-3xl text-red-500">
             My Favorite Countries
         </h1>
     </div>
@@ -16,7 +17,8 @@
         </div>
     </div>
     <div class="border-t-4 border-indigo-500">
-        <h2 class="w-full mb-4 flex text-center justify-items-center justify-center font-bold text-3xl text-red-500">
+        <h2
+            class="font-serif w-full mb-4 flex text-center justify-items-center justify-center font-bold text-3xl text-red-500">
             Borders
         </h2>
         <div class="container m-auto">
@@ -57,6 +59,7 @@ const updateBorderCountries = async (newVal, oldVal) => {
             return diff.some(caa3 => borderCountry.cca3 === caa3)
         })
     } else {
+        debugger;
         const diff = difference(newVal, old)
         const oldState = [...borderCounries.value]
         borderCounries.value.push(...diff.map((caa3) => ({

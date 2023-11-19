@@ -1,7 +1,8 @@
 <template>
     <div class="mt-[50px] w-full m-auto  pt-5 bg-gray-100">
-        <h1 class="w-full mb-4 flex text-center justify-items-center justify-center font-bold text-3xl text-purple-900">
-            Countries
+        <h1
+            class="font-serif w-full mb-4 flex text-center justify-items-center justify-center font-bold text-3xl text-purple-900">
+            FLAG COUNTRIES LIST
         </h1>
 
         <div class="container m-auto  pt-5">

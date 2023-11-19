@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="bg-black  w-full  flex justify-start fixed top-0 ">
+        <div class="bg-black font-sans  w-full  flex justify-start fixed top-0 ">
             <NuxtLink to="/favorite" class="text-white flex w-[50]">
                 <div class=" w-[40px] text-pink-500 hover:text-pink-600 p-2 rounded-full my-1 mx-5"
                     style="background: rgba(255,255,255,0.9)">
@@ -15,7 +15,7 @@
                 </p>
 
             </NuxtLink>
-            <NuxtLink to="/" class="text-white flex w-[50] p-2 mx-5 font-bold">
+            <NuxtLink to="/" class="text-white font-serif flex w-[50] p-3 mx-5 font-bold">
                 Home
             </NuxtLink>
         </div>
