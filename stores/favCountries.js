@@ -16,9 +16,7 @@ export const useCountiresStore = defineStore("countires", {
       });
     },
     removeFromFav(country) {
-      debugger;
       remove(this.borderCodes, (borderCode) => {
-        debugger;
         return borderCode === country.borders;
       });
       remove(this.selectedCountries, (selectedCountry) => {
