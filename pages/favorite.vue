@@ -53,19 +53,13 @@ const loading = ref(false)
 const updateBorderCountries = async (newVal, oldVal) => {
     const old = oldVal || []
     if (old.length > newVal.length) {//Something Removed
-        debugger;
-
         const diff = difference(old, newVal)
         remove(borderCounries, (borderCountry) => {
-            debugger;
             return diff.some(caa3 => borderCountry.cca3 === caa3);
 
         })
-        console.log("newVal", newVal)
-        console.log("borderCounries", borderCounries)
 
     } else {
-        debugger;
         const diff = difference(newVal, old)
         const oldState = [...borderCounries]
         borderCounries.push(...diff.map((caa3) => ({
