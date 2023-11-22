@@ -4,9 +4,7 @@ import { remove } from "lodash";
 export const useCountiresStore = defineStore("countires", {
   state: () => {
     return {
-      selectedCountries: [],
-      // bordersCountry: [],
-      // borderCodes: [],
+      selectedCountries: []
     };
   },
   actions: {
@@ -16,10 +14,7 @@ export const useCountiresStore = defineStore("countires", {
       });
     },
     removeFromFav(country) {
-      // remove(this.borderCodes, (borderCode) => {
-      //   return borderCode === country.borders;
-      // });
-      remove(this.selectedCountries, (selectedCountry) => {
+       remove(this.selectedCountries, (selectedCountry) => {
         return selectedCountry.cca3 === country.cca3;
       });
     },
@@ -27,7 +22,6 @@ export const useCountiresStore = defineStore("countires", {
       if (!this.isInFav(country)) {
         console.log("country.borderCodes", country.borders);
         this.selectedCountries.push(country);
-        // this.borderCodes.push(country.borders);
       }
     },
     fetchBorders() {
